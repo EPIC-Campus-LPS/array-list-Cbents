@@ -1,9 +1,15 @@
 public static void main(String[] args) {
 
     ArrayList<String> words = new ArrayList<>();
+    ArrayList<String> lowercaseWords = new ArrayList<>();
+    ArrayList<String> unique = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
     boolean n = true;
+    int theCount = 0;
+    int totalword = 0;
+    boolean alllower = true;
     while (n){
+        System.out.print("Enter a sentence: ");
         String input = scanner.nextLine();
 
         if (input.equals("STOP")) {
@@ -22,6 +28,35 @@ public static void main(String[] args) {
         }
 
     }
+    totalword = words.size();
+    int big = 0;
+    String biggestW = "";
+    int numUnique = 0;
+    for (String e : words) {
+
+        if (e.equals(e.toUpperCase())) {  // Check uppercase
+            alllower = false;
+        }
+
+        if (e.equalsIgnoreCase("the")) {  // Check for "the"
+            theCount++;
+        }
+
+        if (unique.indexOf(e.toLowerCase()) == -1){ //Check for uniqueness
+            unique.add(e.toLowerCase());
+        }
+
+        if (e.length() >= big){ //Find biggest word
+            biggestW = e.toLowerCase();
+            big = e.length();
+        }
+
+    }
+    numUnique = unique.size();
+
+    System.out.printf("Chat Report:\nYou used %d words.\nYou used %d unique words.\nYou used 'the' %d times.\n'%s' was the longest word.\nAre all words lowercase? %b\n", totalword, numUnique, theCount, biggestW, alllower);
+
+
 
 
 
